@@ -8,7 +8,7 @@ file = 'SE_Willys_' + time.strftime('%Y%m%d') +'.ibs-utf8'
 
 # Write the header of the file.
 with open(file, 'w', encoding="utf-8") as f:
-    f.write('SE\tCPSHub\tWillys\tPublic\n')
+    f.write('SE\tCPSHub\tWillys.se\tPublic\n')
 
 # Simple regex to filter out the EAN.
 regex = re.compile(r'(\/)(\d{8,14})(.jpg|_\w|-\w)')
@@ -53,15 +53,31 @@ for url in urls:
                 short_url = regex.search(long_url)
                 
             if (short_url.group(2)[0:6]) == '000000':
-                f.write(short_url.group(2)[6:] + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2)[6:]
+                        + '\t'
+                        + data["results"][i]["name"]
+                        + ' | '
+                        + data["results"][i]["productLine2"]
+                        + ' | '
+                        + data["results"][i]["price"]
+                        + '\n')
             elif (len(short_url.group(2))) > 13:
-                f.write(short_url.group(2)[1:] + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2)[1:]
+                        + '\t'
+                        + data["results"][i]["name"]
+                        + ' | '
+                        + data["results"][i]["productLine2"]
+                        + ' | '
+                        + data["results"][i]["price"]
+                        + '\n')
             else:
-                f.write(short_url.group(2) + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2)
+                        + '\t'
+                        + data["results"][i]["name"]
+                        + ' | '
+                        + data["results"][i]["productLine2"]
+                        + ' | '
+                        + data["results"][i]["price"]
+                        + '\n')
     
     print(url[24:40] + " is successful")
-
-    
-
-
-
