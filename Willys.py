@@ -53,11 +53,11 @@ for url in urls:
                 short_url = regex.search(long_url)
                 
             if (short_url.group(2)[0:6]) == '000000':
-                f.write(short_url.group(2)[6:] + "  " + data["results"][i]["name"] + " | " + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2)[6:] + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
             elif (len(short_url.group(2))) > 13:
-                f.write(short_url.group(2)[1:] + "  " + data["results"][i]["name"] + " | " + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2)[1:] + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
             else:
-                f.write(short_url.group(2) + "  " + data["results"][i]["name"] + " | " + data["results"][i]["productLine2"] + '\n')
+                f.write(short_url.group(2) + '\t' + data["results"][i]["name"] + ' | ' + data["results"][i]["productLine2"] + '\n')
     
     print(url[24:40] + " is successful")
 
